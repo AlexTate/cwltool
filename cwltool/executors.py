@@ -448,7 +448,7 @@ class MultithreadedJobExecutor(JobExecutor):
         logger: logging.Logger,
         runtime_context: RuntimeContext,
     ) -> None:
-        self.taskqueue: TaskQueue = TaskQueue(threading.Lock(), psutil.cpu_count())
+        self.taskqueue: TaskQueue = TaskQueue(threading.Lock(), psutil.cpu_count(), runtime_context)
         try:
             jobiter = process.job(job_order_object, self.output_callback, runtime_context)
 
